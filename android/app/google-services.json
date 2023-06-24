@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "966410175711",
+    "project_id": "dodo-project-44989",
+    "storage_bucket": "dodo-project-44989.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966410175711:android:ea1e39d11c9fa525e8556a",
+        "android_client_info": {
+          "package_name": "com.vinod.dodo_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966410175711-vb1jpd58t7llve1qu095j6cd6vkm43hm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vinod.dodo_project",
+            "certificate_hash": "8ae410bf65a05c57b2ab3427db930e38851860c7"
+          }
+        },
+        {
+          "client_id": "966410175711-uo0tg8hqoub600bubj4eg9ldsg8stbsg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJp_xYtsS0CdhYq8xlPwSSdwwSGZYiTDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966410175711-4vn1ee5be4nkqt1dqq1qgnrd2v8nvrmj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "966410175711-4hbctigfr8sjjbi4jf7d8577gg9gopad.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dodoProject.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
