@@ -1,3 +1,4 @@
+import 'package:dodo_project/views/buyers/auth/register_screen.dart';
 import 'package:dodo_project/views/buyers/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Brand-Bold',
       ),
-      home: MainScreen(),
+      home: RegisterScreen(),
     );
   }
 }
