@@ -1,7 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:dodo_project/controllers/auth_controller.dart';
 import 'package:dodo_project/utils/show_snackBar.dart';
 import 'package:dodo_project/views/buyers/auth/login_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -23,13 +27,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   bool _isLoading = false;
 
+  Uint8List? _image;
+
   _signUpUser() async {
     setState(() {
       _isLoading = true;
     });
     if (_formKey.currentState!.validate()) {
       await _authController
-          .signupUsers(email, fullName, phoneNumber, password)
+          .signupUsers(email, fullName, phoneNumber, password, _image)
           .whenComplete(() {
         setState(() {
           _formKey.currentState!.reset();
@@ -47,6 +53,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
+  selectGalleryImage() async {
+    Uint8List im = await _authController.pickProfileImage(ImageSource.gallery);
+
+    setState(() {
+      _image = im;
+    });
+  }
+
+  selectCameraImage() async {
+    Uint8List im = await _authController.pickProfileImage(ImageSource.camera);
+
+    setState(() {
+      _image = im;
+    });
+  }
+
   // _signUpUser() async {
   @override
   Widget build(BuildContext context) {
@@ -62,9 +84,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   "Create Customer's Account",
                   style: TextStyle(fontSize: 20),
                 ),
-                CircleAvatar(
-                  radius: 64,
-                  backgroundColor: Colors.yellow.shade900,
+                Stack(
+                  children: [
+                    _image != null
+                        ? CircleAvatar(
+                            radius: 64,
+                            backgroundColor: Colors.yellow.shade900,
+                            backgroundImage: MemoryImage(_image!),
+                          )
+                        : CircleAvatar(
+                            radius: 64,
+                            backgroundColor: Colors.yellow.shade900,
+                            backgroundImage: NetworkImage(
+                                'https://ca.slack-edge.com/T0266FRGM-U015ZPLDZKQ-gf3696467c28-512'),
+                          ),
+                    Positioned(
+                      right: 0,
+                      top: 5,
+                      child: IconButton(
+                        onPressed: () {
+                          selectGalleryImage();
+                        },
+                        icon: Icon(CupertinoIcons.photo),
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(13.0),

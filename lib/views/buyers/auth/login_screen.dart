@@ -15,19 +15,22 @@ class _LoginScreenState extends State<LoginScreen> {
 
   late String password;
 
-  _loginUsers() async {
-    if (_formKey.currentState!.validate()) {
-      String res = await _authController.loginUsers(email, password);
+  bool _isLoading = false;
 
-      if (res == 'success') {
-        return Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext) {
-          return MainScreen();
-        }));
-      } else {
-        return showSnack(context, res);
-      }
+  _loginUsers() async {
+    setState(() {
+      _isLoading = true;
+    });
+    if (_formKey.currentState!.validate()) {
+      await _authController.loginUsers(email, password);
+      return Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (BuildContext) {
+        return MainScreen();
+      }));
     } else {
+      setState(() {
+        _isLoading = false;
+      });
       return showSnack(context, 'Please Fields must not be empty');
     }
   }
